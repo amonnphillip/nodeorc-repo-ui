@@ -1,0 +1,43 @@
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item" [ngClass]="{'disabled': pagination.previousButtonDisabled}">
+      <a class="page-link" href="javascript: void(0)" tabindex="-1" (click)="onPaginationPrev()">Previous</a>
+    </li>
+    <li *ngFor="let pageinationItem of pagination.pageIndexes" class="page-item" [ngClass]="{'active': pageinationItem === pagination.currentPage}">
+      <a class="page-link" href="javascript: void(0)" (click)="onPaginationIndex(pageinationItem)">{{pageinationItem + 1}}</a>
+    </li>
+    <li class="page-item" [ngClass]="{'disabled': pagination.nextButtonDisabled}">
+      <a class="page-link" href="javascript: void(0)" (click)="onPaginationNext()">Next</a>
+    </li>
+  </ul>
+</nav>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>File name</th>
+      <th>Date</th>
+      <th>Hash</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let file of filesThisPage">
+      <td>
+        {{file.path}}
+      </td>
+      <td>
+        {{file.date}}
+      </td>
+      <td>
+        {{file.hash}}
+      </td>
+      <td>
+        <span *ngIf="file.added">Added</span>
+        <span *ngIf="file.modified">Modified</span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,10 @@
+<form name="uploadForm" method="post" action='/uploadfile' encType="multipart/form-data" (ngSubmit)="onSubmit()">
+  <p>
+    <label for="imagefile">Select the image to upload</label>
+    <input type="file" id="imagefile" name="imagefile" #imagefile (change)="fileChange(imagefile.files)">
+  </p>
+  <p *ngIf="fileChosen && !chosenFileNameIsAvailable">A container image with this file name already exists. If you choose to upload this file it will overwrite the current one.</p>
+  <p>
+    <button type="button" (click)="uploadFile()">Upload</button>
+  </p>
+</form>
